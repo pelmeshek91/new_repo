@@ -1,7 +1,10 @@
+import { markup } from './markup';
+import { arrayGenres } from './fooField';
+
 const films = [
   {
     title: 'Interceptor',
-    genre_ids: [28, 53, 12, 18],
+    genre_ids: [28, 53, 12],
   },
   {
     title: 'Fantastic Beasts: The Secrets of Dumbledore',
@@ -49,8 +52,13 @@ const obj = {
     },
   ],
 };
-import { markup } from './markup';
+
+films.forEach(film => {
+  film.genre_names = arrayGenres(film.genre_ids, obj);
+});
 
 const filmsMarkup = markup(films);
 const list = document.querySelector('.list');
 list.innerHTML = filmsMarkup;
+
+arrayGenres([28, 53, 12], obj);
